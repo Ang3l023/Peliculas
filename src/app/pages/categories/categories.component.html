@@ -1,0 +1,37 @@
+<div class="uk-child-width-1-1@s uk-text-center uk-grid-small" #list uk-grid>
+  <div class="uk-child-width-1-2@s uk-text-center" uk-grid>
+    <div>
+      <input class="uk-input uk-width-1-2@m uk-width-1-1@s" readonly type="text" placeholder="Acción"
+        [value]="genero.name">
+    </div>
+    <div>
+      <button class="uk-button uk-button-default uk-width-1-2@m uk-width-1-1@s" type="button">Selecciona el
+        Genero</button>
+      <div uk-dropdown="animation: uk-animation-slide-top-small;mode: click;pos: bottom-justify;flip: true">
+        <ul class="uk-nav uk-dropdown-nav">
+          <li *ngFor="let gen of servGen.categorias" routerLinkActive="uk-active" (click)="list.click()">
+            <a [routerLink]="['/home/categories', gen.id]">
+              {{gen.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="uk-child-width-3-4 uk-text-center" uk-grid>
+    <app-lista-peliculas [peliculas]="peliculas" (propagar)="procesaPropagar($event)" [carga]="carga"
+      [titulo]="genero.name">
+    </app-lista-peliculas>
+  </div>
+  <div class="uk-child-width-3-4 uk-text-center" *ngIf="!peliculas" uk-grid>
+     <div>
+       <div class="uk-inline uk-dark uk-height-1-1">
+         <div class="uk-overlay-default uk-position-cover">
+            <div class="uk-position-center">
+              <div uk-spinner></div>
+            </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</div>

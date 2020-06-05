@@ -1,0 +1,108 @@
+
+<div class="uk-container">
+    <div class="uk-child-width-1-2@m uk-child-width-1-1@s" uk-grid>
+        <div>
+            <div class="uk-panel uk-width-1-2@m uk-width-1-1@s uk-margin-auto">
+                <img class="uk-border-circle" width="200" height="200"
+                  [src]="usuario.photoURL | perfilimage">
+                <dl class="uk-description-list uk-description-list-divider uk-margin">
+                  <dt>Nombre Completo</dt>
+                  <dd>
+                      {{ usuario.displayName }}
+                  </dd>
+                  <dt>Correo Electronico</dt>
+                  <dd>
+                      {{ usuario.email }}
+                  </dd>
+                  <dt>Telefono</dt>
+                  <dd>
+                      {{ usuario.phoneNumber || 'No disponible' }}
+                  </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="uk-text-center">
+            <h2
+                class="uk-text-lead uk-h2 uk-heading-divider">
+                <span uk-icon="icon: file-edit; ratio: 2"></span>
+                {{ texto }}
+                <i
+                    (click)="cambiarTexto()"
+                    style="cursor: pointer;"
+                    uk-toggle="target: .toggle;animation: uk-animation-fade;queued: true; duration: 300"
+                    class="fas fa-exchange-alt uk-margin-medium-left">
+                </i>
+            </h2>
+            <div class="toggle uk-card uk-card-body">
+                <form [formGroup]="forma" class="uk-grid-small" (ngSubmit)="actualizarCambios()" uk-grid>
+                  <div class="uk-width-1-2@s">
+                    <div class="uk-margin">
+                      <div class="uk-inline">
+                        <a class="uk-form-icon" href="#" uk-icon="icon: user"></a>
+                        <input formControlName="displayName" class="uk-input" type="text" name="displayName"
+                          placeholder="Nombre">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-width-1-2@s">
+                    <div class="uk-margin ">
+                      <div class="uk-inline">
+                        <button class="uk-button uk-button-primary" type="submit">
+                            <i class="fas fa-save"></i>
+                            Actualizar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="toggle uk-card uk-card-body" hidden>
+                <form [formGroup]="updPassForm" class="uk-grid-small" (ngSubmit)="actualizarPwd()" uk-grid>
+                    <div class="uk-width-1-2@s">
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input
+                                formControlName="password"
+                                [(ngModel)]="pwdNew" class="uk-input"
+                                type="password" name="password"
+                                placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-2@s">
+                      <div class="uk-margin">
+                        <div class="uk-inline">
+                          <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                          <input
+                            formControlName="password2"
+                            class="uk-input"
+                            [(ngModel)]="pwd2New"
+                            type="password"
+                            name="password2" placeholder="Repeat Password">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uk-width-1-1@s">
+                        <div class="uk-margin ">
+                            <div class="uk-inline">
+                                <button class="uk-button uk-button-primary" type="submit">
+                                    <i class="fas fa-save"></i>
+                                    Actualizar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="uk-margin-medium">
+                <h2 class="uk-text-lead uk-h2 uk-heading-divider">Peliculas favoritas</h2>
+                <div class="uk-overflow-auto uk-height-large" id="favoritos">
+                    <div class="uk-container">
+                        <app-favorites [show]="false" ></app-favorites>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

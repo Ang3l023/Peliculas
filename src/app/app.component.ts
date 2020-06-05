@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Auth0Service } from './services/firebase.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AppPeliculas';
+
+  constructor(private servAuth: Auth0Service) {}
+
 }

@@ -1,0 +1,48 @@
+
+    <form #f="ngForm" (submit)="onSubmit(f)" class="uk-flex uk-background-muted uk-margin uk-margin-remove uk-text-center"
+      style="height: 100vh;background: url(assets/images/fondo.jpg)">
+      <div class="uk-overlay-default uk-position-cover">
+      </div>
+      <div
+        class="uk-margin-auto uk-margin-auto-vertical uk-width-1-4@s uk-card uk-card-default uk-card-body uk-text-center">
+        <div class="uk-margin uk-text-center">
+          <h4 class="uk-h4">
+            Registrate
+          </h4>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input type="text" name="nombre" id="nombre" [(ngModel)]="usuario.nombre" placeholder="Nombre Completo"
+              class="uk-input uk-form-width-large">
+          </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input type="email" name="email" id="email"
+              [(ngModel)]="usuario.email" placeholder="Correo Electronico"
+              class="uk-input uk-form-width-large">
+          </div>
+        </div>
+    
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input name="password" type="password"
+              [(ngModel)]="usuario.password"
+              id="password" placeholder="Password"
+              class="uk-input uk-form-width-large">
+          </div>
+        </div>
+        <button class="uk-button uk-button-primary" type="submit" [disabled]="disabled" >Ingresar</button>
+        <div class="uk-margin">
+          <p class="uk-text-bold">
+            ¿Tienes una cuenta?
+            <button routerLink="/login" class="uk-button uk-button-text">
+              Ingresa aquí
+            </button>
+          </p>
+        </div>
+      </div>
+    </form>

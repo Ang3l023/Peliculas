@@ -1,0 +1,42 @@
+<form #f="ngForm" (submit)="Login(f)" class="uk-flex uk-background-muted uk-margin uk-text-center uk-margin-remove"
+  style="height: 100vh;background: url(assets/images/fondo.jpg)">
+  <div class="uk-overlay-default uk-position-cover">
+  </div>
+  <div class="uk-margin-auto uk-margin-auto-vertical uk-width-1-4@s uk-card uk-card-default uk-card-body uk-text-center">
+    <div class="uk-margin uk-text-center">
+        <h4 class="uk-h4">
+            Login
+        </h4>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <input type="email" name="email" id="email" [(ngModel)]="usuario.email" placeholder="Correo Electronico" class="uk-input uk-form-width-large">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+        <input name="password" type="password" [(ngModel)]="usuario.password" id="password" placeholder="Password" class="uk-input uk-form-width-large">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <button type="button" (click)="logInGoogle()" class="uk-button uk-button-danger uk-margin-small-right">
+        <span uk-icon="icon: google-plus"></span>
+      </button>
+      <button type="submit" [disabled]="disabled" class="uk-button uk-button-primary uk-margin-small">
+        Ingresar
+        <span uk-icon="icon: sign-in"></span>
+      </button>
+    </div>
+    <div class="uk-margin">
+      <p class="uk-text-bold">
+        ¿No tienes una cuenta?
+        <button routerLink="/register" class="uk-button uk-button-text">
+            Registrate aquí
+        </button>
+      </p>
+    </div>
+  </div>
+</form>

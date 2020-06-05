@@ -1,0 +1,32 @@
+<div class="uk-text-center" uk-grid>
+  <div class="uk-width-1-1">
+    <h3>
+      {{titulo}}
+    </h3>
+    <hr>
+  </div>
+  <div class="uk-width-1-1">
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1"
+      uk-slider="clsActivated: uk-transition-active; center: false;autoplay: true;autoplay-interval:1000; finite: false">
+
+      <ul class="uk-slider-items uk-child-width-1-1@s uk-child-width-1-4@m">
+        <li *ngFor="let pelicula of peliculas">
+          <img [src]="pelicula.poster_path | imagen" class="uk-height-1-1 uk-width-1-1">
+          <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+            <h4 class="uk-margin-remove uk-text-small">
+              <a class="uk-link-reset" [routerLink]="['/home/detalles', pelicula.id]">
+                {{pelicula.title}}
+              </a>
+            </h4>
+          </div>
+        </li>
+      </ul>
+
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+        uk-slider-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+        uk-slider-item="next"></a>
+
+    </div>
+  </div>
+</div>

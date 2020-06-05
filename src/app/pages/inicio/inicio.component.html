@@ -1,0 +1,15 @@
+<div class="uk-text-center uk-margin-top uk-margin-bottom" uk-grid>
+  <div class="uk-width-3-4 uk-margin-auto">
+    <app-slide-pelicula [peliculas]="pelisEstrenos" titulo="Estrenos"></app-slide-pelicula>
+  </div>
+  <div class="uk-width-3-4 uk-margin-auto">
+    <app-slide-pelicula [peliculas]="pelisPopulares" titulo="Peliculas Populares"></app-slide-pelicula>
+  </div>
+</div>
+<div uk-grid>
+  <div class="uk-width-3-4 uk-margin-auto">
+    <app-lista-peliculas [peliculas]="pelisRecom" (propagar)="getPelisRecomendadas($event)" [carga]="cargar"
+      titulo="Recomendaciones">
+    </app-lista-peliculas>
+  </div>
+</div>

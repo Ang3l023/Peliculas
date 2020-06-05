@@ -1,0 +1,135 @@
+<nav class="uk-navbar-container uk-margin" uk-navbar="mode: click" uk-sticky="animation: uk-animation-slide-top; sel-target: #navbarMobile; cls-active: uk-navbar-sticky; cls-inactive:
+uk-navbar-transparent uk-light; top: 200">
+  <div class="uk-navbar-left">
+    <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas-nav-primary" uk-toggle>
+      <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Menu</span>
+    </a>
+    <a class="uk-navbar-item uk-logo" [routerLink]="['/home']">
+      <img class="uk-margin-small-right"
+        src="https://cdn4.iconfinder.com/data/icons/roundettes-for-os-x-vol-i-2/505/Movies.png" width="50" height="50">
+      Peliculas
+    </a>
+
+    <ul class="uk-navbar-nav uk-visible@m">
+      <li routerLinkActive="uk-active">
+        <a [routerLink]="['/home']">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+          Inicio
+        </a>
+      </li>
+      <li routerLinkActive="uk-active">
+        <a [routerLink]="['/home/categories',28]">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  thumbnails"></span>
+          Categorías
+        </a>
+      </li>
+      <li routerLinkActive="uk-active">
+        <a [routerLink]="['/home/search']">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: search"></span>
+          Buscar
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="uk-navbar-right uk-visible@m">
+    <div>
+      <a class="uk-navbar-toggle" uk-search-icon href="#"></a>
+      <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+        <form class="uk-search uk-search-navbar uk-width-1-1" #f="ngForm" novalidate (ngSubmit)="buscar(texto.value)">
+          <input class="uk-search-input" type="search" #texto placeholder="Search..." autofocus>
+        </form>
+      </div>
+    </div>
+    <div class="uk-navbar-nav">
+      <li>
+        <a href="#">
+          <span class="uk-icon uk-margin-small-right" #more uk-icon="icon: more-vertical"></span>
+        </a>
+        <div class="uk-navbar-dropdown">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li *ngIf="servLogIn.user" [routerLinkActive]="'uk-active'">
+              <a [routerLink]="['/home/profile']" (click)="more.click()">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  user"></span>
+                Perfil
+              </a>
+            </li>
+            <li *ngIf="servLogIn.user" [routerLinkActive]="'uk-active'">
+              <a [routerLink]="['/home/favoritos']" (click)="more.click()">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  heart"></span>
+                Favoritos
+              </a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li *ngIf="!servLogIn.user">
+              <button type="button" class="uk-button uk-button-text" (click)="[more.click(),login()]" >
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                login
+              </button>
+            </li>
+            <li *ngIf="servLogIn.user">
+              <button class="uk-button uk-button-text" type="button" (click)="[more.click(),logout()]">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<!-- navbar mobile -->
+
+<div id="offcanvas-nav-primary" uk-offcanvas="overlay: true; mode: slide;container: true">
+  <div class="uk-offcanvas-bar">
+    <button class="uk-offcanvas-close" #menu type="button" uk-close></button>
+    <ul class="uk-nav uk-nav-default">
+      <li [routerLinkActive]="'uk-active'">
+        <a [routerLink]="['/home']" (click)="menu.click()">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+          Inicio
+        </a>
+      </li>
+      <li routerLinkActive="uk-active">
+        <a [routerLink]="['/home/categories',28]" (click)="menu.click()">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  thumbnails"></span>
+          Categorías
+        </a>
+      </li>
+      <li routerLinkActive="uk-active">
+        <a [routerLink]="['/home/search']" (click)="menu.click()">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: search"></span>
+          Buscar
+        </a>
+      </li>
+      <li *ngIf="servLogIn.user" [routerLinkActive]="'uk-active'">
+        <a [routerLink]="['/home/profile']" (click)="menu.click()">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  user"></span>
+          Perfil
+        </a>
+      </li>
+      <li *ngIf="servLogIn.user" [routerLinkActive]="'uk-active'">
+        <a [routerLink]="['/home/favoritos']" (click)="menu.click()">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  heart"></span>
+          Favoritos
+        </a>
+      </li>
+      <li class="uk-nav-divider"></li>
+      <li [routerLinkActive]="'uk-active'" *ngIf="!servLogIn.user">
+        <a (click)="[login(), menu.click()]">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
+          login
+        </a>
+      </li>
+      <li [routerLinkActive]="'uk-active'" *ngIf="servLogIn.user">
+        <a (click)="[menu.click(),logout()]">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+          logout
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>

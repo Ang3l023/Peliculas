@@ -1,0 +1,16 @@
+<div class="uk-container">
+  <div class="uk-width-1-1" uk-grid>
+    <div class="uk-width-1-2@m uk-width-1-1@s uk-margin-auto">
+      <form [formGroup]="forma" class="uk-search uk-search-default uk-width-1-1" (submit)="buscar(text.value)">
+        <a (click)="buscar(text.value)" class="uk-search-icon-flip" uk-search-icon></a>
+        <input name="buscar" class="uk-search-input" #text type="search" placeholder="Buscar...">
+      </form>
+    </div>
+  </div>
+</div>
+<div uk-grid>
+  <div class="uk-width-3-4 uk-margin-auto">
+    <app-lista-peliculas [peliculas]="peliculas" (propagar)="procesaPropagar($event)" [carga]="carga" titulo="Busqueda">
+    </app-lista-peliculas>
+  </div>
+</div>
